@@ -26,46 +26,4 @@ app.post("/login", async (req, res) => {
         res.send("user not found")
     }
 
-    if (user.password === password) {
-
-        const token = jwt.sign(
-            { id: user._id, role: user.role },
-            "secret123"
-        )
-
-        res.json({
-            message: "login success",
-            token: token
-        })
-
-    } else {
-        res.send("wrong password")
-    }
-
-})
-
-app.get("/users", async (req, res) => {
-
-    const users = await User.find()
-
-    res.json(users)
-
-})
-
-app.post("/register", async (req, res) => {
-
-    const user = new User({
-        email: req.body.email,
-        password: req.body.password,
-        role: "user"
-    })
-
-    await user.save()
-
-    res.send("user created")
-
-})
-
-app.listen(3000, () => {
-    console.log("server started")
-})
+   
